@@ -7,15 +7,7 @@ exports.createUser = (req, res, next) => {
     bcrypt.hash(req.body.password, 10).then(hash => {
         const user = new User({
             email: req.body.email,
-            password: hash,
-            firstName: req.body.firstName,
-            lastName: req.body.lastName,
-            gender: req.body.gender,
-            dob: req.body.dob,
-            phoneNumber: req.body.phoneNumber,
-            location: req.body.location,
-            city: req.body.city,
-            zipCode: req.body.zipCode,
+            password: hash
         });
         user
             .save()
