@@ -2,7 +2,7 @@ const path = require("path");
 const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require("mongoose");
-// const port= process.env.PORT || 3000;
+const port= process.env.PORT;
 
 const userRoutes = require('./routes/user');
 
@@ -13,6 +13,7 @@ const app = express();
 mongoose.connect("mongodb+srv://test:test@ncaidb.ulqmfhn.mongodb.net/?retryWrites=true&w=majority")
     .then(()=> {
         console.log("Connected to DB");
+        console.log(`Listening on PORT ${port}`);
     })
     .catch(() =>{
         console.log("Connection Failed");
