@@ -10,7 +10,7 @@ const { createShorthandPropertyAssignment } = require('typescript');
 
 const app = express();
 
-mongoose.connect("mongodb+srv://test:"+ process.env.MONGO_ATLAS_PW + "@ncaidb.ulqmfhn.mongodb.net/?retryWrites=true&w=majority")
+mongoose.connect("mongodb+srv://test:test@ncaidb.ulqmfhn.mongodb.net/?retryWrites=true&w=majority")
     .then(()=> {
         console.log("Connected to DB");
     })

@@ -1,5 +1,6 @@
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
+require("dotenv").config();
 
 const User = require("../models/user");
 
@@ -48,7 +49,7 @@ exports.loginUser = (req, res, next) => {
                 process.env.JWT_KEY,
                 { expiresIn: "1h" }
             );
-
+                console.log(token);
             res.status(200).json({
                 token: token,
                 expiresIn: 3600,
@@ -56,6 +57,7 @@ exports.loginUser = (req, res, next) => {
             })
         })
         .catch((err) => {
+            console.log(err);
             return res.status(401).json({
                 message: "Invalid Authication Credentials!"
             });
