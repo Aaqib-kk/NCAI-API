@@ -7,7 +7,7 @@ const User = require("../models/user");
 exports.createUser = (req, res, next) => {
     if (!req.body.email || !req.body.password) {
         return res.status(400).json({
-            message: "Please Enter Username and Password"
+            message: "Please Enter email and Password"
         })
     };
     bcrypt.hash(req.body.password, 10).then(hash => {
@@ -25,7 +25,7 @@ exports.createUser = (req, res, next) => {
             })
             .catch(err => {
                 res.status(500).json({
-                    message: "Invalid Authentication Credentials!"
+                    message: "Invalid Credentials!"
                 });
             });
     });
@@ -37,7 +37,7 @@ exports.loginUser = (req, res, next) => {
         .then(user => {
             if (!user) {
                 return res.status(401).json({
-                    message: "Auth Failed"
+                    message: "User does not exist"
                 });
             }
             fetchedUser = user;
