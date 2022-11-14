@@ -1,10 +1,15 @@
-const bcrypt = require("bcrypt");
+const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 require("dotenv").config();
 
 const User = require("../models/user");
 
 exports.createUser = (req, res, next) => {
+    if (!req.body.email || !req.body.password) {
+        return res.status(400).json({
+            message: "Please Enter Username and Password"
+        })
+    };
     bcrypt.hash(req.body.password, 10).then(hash => {
         const user = new User({
             email: req.body.email,
